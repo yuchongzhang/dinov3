@@ -118,6 +118,59 @@ class SelfAttention(nn.Module):
         return x.reshape([B, N, C])
 
 
+class MixedSelfAttention(SelfAttention):
+    def __init__(
+        self,
+        dim: int,
+        num_heads: int = 8,
+        num_vanilla_heads: int = 0,
+        qkv_bias: bool = False,
+        proj_bias: bool = True,
+        attn_drop: float = 0.0,
+        proj_drop: float = 0.0,
+        mask_k_bias: bool = False,
+        device=None,
+    ) -> None:
+        super().__init__(
+            dim,
+            num_heads=num_heads,
+            qkv_bias=qkv_bias,
+            proj_bias=proj_bias,
+            attn_drop=attn_drop,
+            proj_drop=proj_drop,
+            mask_k_bias=mask_k_bias,
+            device=device,
+        )
+        assert 0 <= num_vanilla_heads <= num_heads
+        self.num_vanilla_heads = num_vanilla_heads
+        self.num_mixed_heads = num_heads - num_vanilla_heads
+
+    def compute_attention(self, qkv: Tensor, attn_bias=None, rope=None) -> Tensor:
+        assert attn_bias is None
+        B, N, _ = qkv.shape
+        C = self.qkv.in_features
+
+        qkv = qkv.reshape(B, N, 3, self.num_heads, C // self.num_heads)
+        q, k, v = torch.unbind(qkv, 2)
+        q, k, v = [t.transpose(1, 2) for t in [q, k, v]]
+        if rope is not None:
+            q, k = self.apply_rope(q, k, rope)
+        y = torch.nn.functional.scaled_dot_product_attention(q, k, v)
+
+        # Mixed heads output v - y (residual attention)
+        if self.num_mixed_heads > 0:
+            if self.num_vanilla_heads > 0:
+                y = torch.cat(
+                    [y[:, : self.num_vanilla_heads], v[:, self.num_vanilla_heads :] - y[:, self.num_vanilla_heads :]],
+                    dim=1,
+                )
+            else:
+                y = v - y
+
+        x = y.transpose(1, 2)
+        return x.reshape([B, N, C])
+
+
 class CausalSelfAttention(nn.Module):
     def __init__(
         self,

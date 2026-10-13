@@ -95,6 +95,7 @@ student:
   ffn_bias: true
   norm_layer: "layernorm"
   n_storage_tokens: 0
+  num_vanilla_heads: 0
   mask_k_bias: false
   untie_cls_and_patch_norms: false  # If true, use separate norms for CLS/reg and patch/mask tokens
   untie_global_and_local_cls_norm: false  # If true, use separate norms for local and global crop CLS token during training
@@ -180,6 +181,12 @@ checkpointing:
   period: 3750
   max_to_keep: 3
   keep_every: 99999999999999999  # Save a checkpoint every N iterations, regardless of max_to_keep and period
+wandb:
+  enabled: false
+  project: dinov3
+  entity: null
+  name: null
+  id: null  # Run id for resuming. If null, derived from train.output_dir so requeues stitch together.
 
 # Example of constant schedules with schedules v2
 # # schedules:

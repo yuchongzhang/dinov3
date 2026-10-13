@@ -1,0 +1,15 @@
+{
+  "migrations": [
+    {
+      "from": "aa877157f62726150ff6757c669d33c48cc8562e91515af31bdb0191f2afa7d0",
+      "to": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "reason": "User requested segmentation time limit 06:00:00 -> 04:45:00; evaluation protocol unchanged",
+      "source_before_sha256": "94ab1a582b6e0e383e86b1699199a207b63350c0b1d52e7b99056f7db55727c4",
+      "source_after_sha256": "b040fab439be7e446cc8cebe77fed975a4518dad999dd6886a46bdb6ed45b8f1",
+      "verification_job": "1363472",
+      "audit_job": "1363530",
+      "pilot_job": "1363477",
+      "time_limit": "04:45:00"
+    }
+  ]
+}

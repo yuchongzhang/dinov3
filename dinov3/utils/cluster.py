@@ -13,8 +13,8 @@ class ClusterType(Enum):
     CW = "cw"
 
 
-def _guess_cluster_type() -> ClusterType:
-    return ClusterType.CW
+def _guess_cluster_type() -> Optional[ClusterType]:
+    return None
 
 
 def get_cluster_type(
@@ -83,6 +83,8 @@ def get_slurm_executor_parameters(
     nodes: int,
     num_gpus_per_node: int,
     cluster_type: Optional[ClusterType] = None,
+    cpus_per_task: Optional[int] = None,
+    mem_gb: Optional[int] = None,
     **kwargs,
 ) -> Dict[str, Any]:
     # create default parameters
@@ -92,12 +94,19 @@ def get_slurm_executor_parameters(
         "tasks_per_node": num_gpus_per_node,  # one task per GPU
         "cpus_per_task": 10,
         "nodes": nodes,
-        "slurm_partition": get_slurm_partition(cluster_type),
     }
+    slurm_partition = get_slurm_partition(cluster_type)
+    if slurm_partition is not None:
+        params["slurm_partition"] = slurm_partition
     # apply cluster-specific adjustments
     cluster_type = get_cluster_type(cluster_type)
     if cluster_type == ClusterType.CW:
         params["cpus_per_task"] = 16
+    # apply user overrides for resource requests
+    if cpus_per_task is not None:
+        params["cpus_per_task"] = cpus_per_task
+    if mem_gb is not None:
+        params["mem_gb"] = mem_gb
     # set additional parameters / apply overrides
     params.update(kwargs)
     return params

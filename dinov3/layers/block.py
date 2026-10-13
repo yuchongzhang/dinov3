@@ -3,6 +3,7 @@
 # This software may be used and distributed in accordance with
 # the terms of the DINOv3 License Agreement.
 
+from functools import partial
 from typing import Callable, List, Optional
 
 import torch
@@ -10,7 +11,7 @@ from torch import Tensor, nn
 
 from dinov3.utils import cat_keep_shapes, uncat_with_shapes
 
-from .attention import CausalSelfAttention, SelfAttention
+from .attention import CausalSelfAttention, MixedSelfAttention, SelfAttention
 from .ffn_layers import Mlp
 from .layer_scale import LayerScale  # , DropPath
 
@@ -210,6 +211,23 @@ class SelfAttentionBlock(nn.Module):
             return self._forward_list(x_or_x_list, rope_list=rope_or_rope_list)
         else:
             raise AssertionError
+
+
+class MixedSelfAttentionBlock(SelfAttentionBlock):
+    def __init__(
+        self,
+        dim: int,
+        num_heads: int,
+        num_vanilla_heads: int = 0,
+        **kwargs,
+    ) -> None:
+        kwargs.pop("attn_class", None)
+        super().__init__(
+            dim,
+            num_heads,
+            attn_class=partial(MixedSelfAttention, num_vanilla_heads=num_vanilla_heads),
+            **kwargs,
+        )
 
 
 class CausalSelfAttentionBlock(nn.Module):

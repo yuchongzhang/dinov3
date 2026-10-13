@@ -187,6 +187,7 @@ def create_train_dataset_dict(
     few_shot_eval: bool = False,
     few_shot_k_or_percent: float | None = None,
     few_shot_n_tries: int = 1,
+    seed: int = 0,
 ) -> dict[int, dict[int, Any]]:
     """
     Randomly split a dataset for few-shot evaluation, with `few_shot_k_or_percent` being
@@ -209,12 +210,15 @@ def create_train_dataset_dict(
         few_shot_k_or_percent = int(few_shot_k_or_percent)
 
     for t in range(few_shot_n_tries):
+        # Offset by `seed` so each run draws different subsets, while the tries within a
+        # run stay distinct from each other.
+        try_seed = seed + t
         t_subset_bool = _subset_dataset_per_class(
             class_indices_mapping=class_indices_mapping,
             n_or_percent_per_class=few_shot_k_or_percent,
             dataset_size=len(train_labels),
             is_percent=is_percent,
-            seed=t,
+            seed=try_seed,
         )
         if len(train_labels.shape) > 1 and is_percent:
             t_subset_bool = _multilabel_rebalance_subset(
@@ -223,7 +227,7 @@ def create_train_dataset_dict(
                 dataset_size=len(train_labels),
                 labels=train_labels,
                 indices_bool=t_subset_bool,
-                seed=t,
+                seed=try_seed,
             )
         train_dataset_dict[t] = SubsetEx(train_dataset, t_subset_bool.nonzero().flatten())
     return train_dataset_dict

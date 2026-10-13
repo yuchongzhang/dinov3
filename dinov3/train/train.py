@@ -6,6 +6,7 @@
 import argparse
 import copy
 import gc
+import hashlib
 import logging
 import math
 import os
@@ -379,7 +380,40 @@ def build_multi_resolution_data_loader_from_cfg(
     return data_loader
 
 
+def _wandb_run_id(cfg):
+    """Stable wandb run id, so a requeued job resumes its run instead of starting a new one.
+
+    Derived from the output dir, which is unique per run and is passed back unchanged
+    when submitit requeues the job.
+    """
+    if cfg.wandb.get("id"):
+        return cfg.wandb.id
+    digest = hashlib.sha1(os.path.abspath(cfg.train.output_dir).encode()).hexdigest()[:16]
+    return f"dinov3_{digest}"
+
+
+def _init_wandb(cfg):
+    """Initialize wandb on rank 0 if enabled in config."""
+    if not cfg.wandb.enabled or not distributed.is_main_process():
+        return None
+    import wandb
+    from omegaconf import OmegaConf
+
+    run_id = _wandb_run_id(cfg)
+    logger.info(f"wandb run id: {run_id} (resumed if it already exists)")
+    run = wandb.init(
+        project=cfg.wandb.project,
+        entity=cfg.wandb.entity,
+        name=cfg.wandb.name,
+        id=run_id,
+        config=OmegaConf.to_container(cfg, resolve=True),
+        resume="allow",
+    )
+    return run
+
+
 def do_train(cfg, model, resume=False):
+    wandb_run = _init_wandb(cfg)
     process_subgroup = distributed.get_process_subgroup()
     ckpt_dir = Path(cfg.train.output_dir, "ckpt").expanduser()
     ckpt_dir.mkdir(parents=True, exist_ok=True)
@@ -432,7 +466,7 @@ def do_train(cfg, model, resume=False):
     metrics_file = os.path.join(cfg.train.output_dir, "training_metrics.json")
     metric_logger = MetricLogger(delimiter="  ", output_file=metrics_file)
     # Manual garbage collection
-    gc.disable()
+    # gc.disable()
     gc.collect()
 
     # Training loop
@@ -549,6 +583,10 @@ def do_train(cfg, model, resume=False):
         metric_logger.update(mom=mom)
         metric_logger.update(last_layer_lr=last_layer_lr)
         metric_logger.update(total_loss=total_loss, **metrics_dict)
+        if wandb_run is not None:
+            wandb_log = {k: v.item() if isinstance(v, torch.Tensor) else v for k, v in metrics_dict.items()}
+            wandb_log.update(lr=lr, wd=wd, mom=mom, last_layer_lr=last_layer_lr, total_loss=total_loss.item() if isinstance(total_loss, torch.Tensor) else total_loss)
+            wandb_run.log(wandb_log, step=it)
 
         # Submit evaluation jobs
         if (
@@ -576,6 +614,8 @@ def do_train(cfg, model, resume=False):
 
         iteration = iteration + 1
     metric_logger.synchronize_between_processes()
+    if wandb_run is not None:
+        wandb_run.finish()
 
     return {k: meter.global_avg for k, meter in metric_logger.meters.items()}
 

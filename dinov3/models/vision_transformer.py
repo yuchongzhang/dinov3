@@ -138,7 +138,7 @@ class DinoVisionTransformer(nn.Module):
         ffn_layer_cls = ffn_layer_dict[ffn_layer]
         ffn_ratio_sequence = [ffn_ratio] * depth
         blocks_list = [
-            SelfAttentionBlock(
+            self._make_block(
                 dim=embed_dim,
                 num_heads=num_heads,
                 ffn_ratio=ffn_ratio_sequence[i],
@@ -178,6 +178,9 @@ class DinoVisionTransformer(nn.Module):
             self.local_cls_norm = None
         self.head = nn.Identity()
         self.mask_token = nn.Parameter(torch.empty(1, embed_dim, device=device))
+
+    def _make_block(self, **kwargs):
+        return SelfAttentionBlock(**kwargs)
 
     def init_weights(self):
         self.rope_embed._init_weights()

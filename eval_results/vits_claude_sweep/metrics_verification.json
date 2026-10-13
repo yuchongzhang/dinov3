@@ -1,0 +1,10 @@
+{
+  "slurm_job_id": "1592545",
+  "report_generated_utc": "2026-10-12T16:36:26Z",
+  "valid_evaluations": 28,
+  "summary_rows_checked": 40,
+  "independent_statistics": "numpy mean and std(ddof=1), absolute tolerance 1e-12",
+  "raw_results_match": true,
+  "segmentation_selection": "best mIoU over steps 20000 and 40000",
+  "passed": true
+}

@@ -1,0 +1,1565 @@
+{
+  "generated_utc": "2026-10-12T16:36:26Z",
+  "finished_training_runs": 14,
+  "valid_evaluations": 28,
+  "expected_evaluations": 28,
+  "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+  "per_run": [
+    {
+      "run": "vits_claude_seed0",
+      "model": "vits_claude",
+      "training_seed": 0,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1786758174050152000
+      },
+      "checkpoint_sha256": "5d35708e9fb45c85542bd0da271e9018d5d3f1cb5eb2ef359f96fc4157e4f2d0",
+      "config_sha256": "8f1058574f215a55ca867fd17dd942a2cbde78aaf71058a328abc13d833bccb5",
+      "code_sha256": "aa877157f62726150ff6757c669d33c48cc8562e91515af31bdb0191f2afa7d0",
+      "job_id": "1363476",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/linear/attempt_1363476",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 72.28400111198425
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_075000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_claude_seed0",
+      "model": "vits_claude",
+      "training_seed": 0,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1786758174050152000
+      },
+      "checkpoint_sha256": "5d35708e9fb45c85542bd0da271e9018d5d3f1cb5eb2ef359f96fc4157e4f2d0",
+      "config_sha256": "8f1058574f215a55ca867fd17dd942a2cbde78aaf71058a328abc13d833bccb5",
+      "code_sha256": "aa877157f62726150ff6757c669d33c48cc8562e91515af31bdb0191f2afa7d0",
+      "job_id": "1363477",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/segmentation/attempt_1363477",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 30.82,
+        "acc": 39.99,
+        "aAcc": 73.96,
+        "dice": 43.38,
+        "fscore": 43.97,
+        "precision": 52.8,
+        "recall": 39.99
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/segmentation/attempt_1363477/model_best.pth"
+      }
+    },
+    {
+      "run": "vits_claude_seed1",
+      "model": "vits_claude",
+      "training_seed": 1,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1786758509179943000
+      },
+      "checkpoint_sha256": "3e6072c50e809e0e95d50b3d387bb99f8ce2704694078fbc3906c5668d348481",
+      "config_sha256": "a22486350f00984f58c031bf9f098acf002cbb1b3367c6ac04ae1bc8f67cef95",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1365755",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed1/linear/attempt_1365755",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 71.92999720573425
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_100000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_claude_seed1",
+      "model": "vits_claude",
+      "training_seed": 1,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1786758509179943000
+      },
+      "checkpoint_sha256": "3e6072c50e809e0e95d50b3d387bb99f8ce2704694078fbc3906c5668d348481",
+      "config_sha256": "a22486350f00984f58c031bf9f098acf002cbb1b3367c6ac04ae1bc8f67cef95",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1365757",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed1/segmentation/attempt_1365757",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 29.48,
+        "acc": 38.14,
+        "aAcc": 73.09,
+        "dice": 41.84,
+        "fscore": 42.7,
+        "precision": 51.63,
+        "recall": 38.14
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed1/segmentation/attempt_1365757/model_best.pth"
+      }
+    },
+    {
+      "run": "vits_claude_seed2",
+      "model": "vits_claude",
+      "training_seed": 2,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1786875892155049000
+      },
+      "checkpoint_sha256": "b69d939dd58a88b285aa2374fd9789d06691e7936b4c9e6eeb4ee35077720d00",
+      "config_sha256": "27e6832d32ea53aff2bf8e9341190400e5a933cde2fd0948f0377353cc57f6fb",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1365756",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed2/linear/attempt_1365756",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 72.0300018787384
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_075000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_claude_seed2",
+      "model": "vits_claude",
+      "training_seed": 2,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1786875892155049000
+      },
+      "checkpoint_sha256": "b69d939dd58a88b285aa2374fd9789d06691e7936b4c9e6eeb4ee35077720d00",
+      "config_sha256": "27e6832d32ea53aff2bf8e9341190400e5a933cde2fd0948f0377353cc57f6fb",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1365758",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed2/segmentation/attempt_1365758",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 30.5,
+        "acc": 39.41,
+        "aAcc": 73.67,
+        "dice": 42.97,
+        "fscore": 43.55,
+        "precision": 52.97,
+        "recall": 39.41
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed2/segmentation/attempt_1365758/model_best.pth"
+      }
+    },
+    {
+      "run": "vits_1L_claude_seed0",
+      "model": "vits_1L_claude",
+      "training_seed": 0,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_1L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_1L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1786875432750826000
+      },
+      "checkpoint_sha256": "84e3614a4bf54b108aa0c2213c321f7e6368492793d454caf714baa212494de0",
+      "config_sha256": "1144007eed69872a17a8f4abf7a2823ef9112686816042a657af960bf3525109",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1366249",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_1L_claude_seed0/linear/attempt_1366249",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 73.05799722671509
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_100000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_1L_claude_seed0",
+      "model": "vits_1L_claude",
+      "training_seed": 0,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_1L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_1L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1786875432750826000
+      },
+      "checkpoint_sha256": "84e3614a4bf54b108aa0c2213c321f7e6368492793d454caf714baa212494de0",
+      "config_sha256": "1144007eed69872a17a8f4abf7a2823ef9112686816042a657af960bf3525109",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1367568",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_1L_claude_seed0/segmentation/attempt_1367568",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 30.66,
+        "acc": 39.65,
+        "aAcc": 73.65,
+        "dice": 43.34,
+        "fscore": 43.92,
+        "precision": 52.81,
+        "recall": 39.65
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_1L_claude_seed0/segmentation/attempt_1367568/model_best.pth"
+      }
+    },
+    {
+      "run": "vits_1L_claude_seed1",
+      "model": "vits_1L_claude",
+      "training_seed": 1,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_1L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_1L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1787665259591438000
+      },
+      "checkpoint_sha256": "24db1c199cf1572827774e9e3e220b13680ec6ac5f994a432bef80d8e0a1273a",
+      "config_sha256": "7f1a26c4a77333c8c7fbe59852cca9aef556ea532cc0c2fb482c2084a27a8e93",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1366255",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_1L_claude_seed1/linear/attempt_1366255",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 73.30600023269653
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_100000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_1L_claude_seed1",
+      "model": "vits_1L_claude",
+      "training_seed": 1,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_1L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_1L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1787665259591438000
+      },
+      "checkpoint_sha256": "24db1c199cf1572827774e9e3e220b13680ec6ac5f994a432bef80d8e0a1273a",
+      "config_sha256": "7f1a26c4a77333c8c7fbe59852cca9aef556ea532cc0c2fb482c2084a27a8e93",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1367635",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_1L_claude_seed1/segmentation/attempt_1367635",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 31.71,
+        "acc": 40.92,
+        "aAcc": 74.28,
+        "dice": 44.56,
+        "fscore": 44.86,
+        "precision": 54.16,
+        "recall": 40.92
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_1L_claude_seed1/segmentation/attempt_1367635/model_best.pth"
+      }
+    },
+    {
+      "run": "vits_1L_claude_seed2",
+      "model": "vits_1L_claude",
+      "training_seed": 2,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_1L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_1L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1787734011815654000
+      },
+      "checkpoint_sha256": "578ee9820910ad1cf17d516254f39d3f014dae973b3e1d0536f9583d4a565f19",
+      "config_sha256": "bb236c0725c607494004ef55ad27a258dd930809b362222a1f7e70d2c74a7edc",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1366944",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_1L_claude_seed2/linear/attempt_1366944",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 72.77600169181824
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_100000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_1L_claude_seed2",
+      "model": "vits_1L_claude",
+      "training_seed": 2,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_1L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_1L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1787734011815654000
+      },
+      "checkpoint_sha256": "578ee9820910ad1cf17d516254f39d3f014dae973b3e1d0536f9583d4a565f19",
+      "config_sha256": "bb236c0725c607494004ef55ad27a258dd930809b362222a1f7e70d2c74a7edc",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1389990",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_1L_claude_seed2/segmentation/attempt_1389990",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 30.78,
+        "acc": 39.76,
+        "aAcc": 73.73,
+        "dice": 43.49,
+        "fscore": 43.78,
+        "precision": 52.94,
+        "recall": 39.76
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_1L_claude_seed2/segmentation/attempt_1389990/model_best.pth"
+      }
+    },
+    {
+      "run": "vits_3L_claude_seed0",
+      "model": "vits_3L_claude",
+      "training_seed": 0,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_3L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_3L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1787734051035214000
+      },
+      "checkpoint_sha256": "bcec9594de7534a9499121f7bb240cc8c6b2b96fdd55a0fbfc38dc44a5a91a88",
+      "config_sha256": "79847ad2e1f848abb6f1ec9469ea9d98e9efc4b123b83393e63de07b189dd6f2",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1366983",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_3L_claude_seed0/linear/attempt_1366983",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 73.56200218200684
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_075000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_3L_claude_seed0",
+      "model": "vits_3L_claude",
+      "training_seed": 0,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_3L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_3L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1787734051035214000
+      },
+      "checkpoint_sha256": "bcec9594de7534a9499121f7bb240cc8c6b2b96fdd55a0fbfc38dc44a5a91a88",
+      "config_sha256": "79847ad2e1f848abb6f1ec9469ea9d98e9efc4b123b83393e63de07b189dd6f2",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1389991",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_3L_claude_seed0/segmentation/attempt_1389991",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 32.7,
+        "acc": 42.38,
+        "aAcc": 74.87,
+        "dice": 45.84,
+        "fscore": 46.15,
+        "precision": 54.31,
+        "recall": 42.38
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_3L_claude_seed0/segmentation/attempt_1389991/model_best.pth"
+      }
+    },
+    {
+      "run": "vits_3L_claude_seed1",
+      "model": "vits_3L_claude",
+      "training_seed": 1,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_3L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_3L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1787733955113351000
+      },
+      "checkpoint_sha256": "8892b4f53d33c44e7d1a883b2f4cb1e9b2d97e8ffa7e18d2750638e5c7e734a2",
+      "config_sha256": "e2f173ea2ad8e13e2d89e974b87d0377b004f3062cfcfa1441f3556339ffb68d",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1367503",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_3L_claude_seed1/linear/attempt_1367503",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 73.17799925804138
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_100000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_3L_claude_seed1",
+      "model": "vits_3L_claude",
+      "training_seed": 1,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_3L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_3L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1787733955113351000
+      },
+      "checkpoint_sha256": "8892b4f53d33c44e7d1a883b2f4cb1e9b2d97e8ffa7e18d2750638e5c7e734a2",
+      "config_sha256": "e2f173ea2ad8e13e2d89e974b87d0377b004f3062cfcfa1441f3556339ffb68d",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1399509",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_3L_claude_seed1/segmentation/attempt_1399509",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 31.65,
+        "acc": 40.73,
+        "aAcc": 74.18,
+        "dice": 44.45,
+        "fscore": 45.36,
+        "precision": 53.84,
+        "recall": 40.73
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_3L_claude_seed1/segmentation/attempt_1399509/model_best.pth"
+      }
+    },
+    {
+      "run": "vits_3L_claude_seed2",
+      "model": "vits_3L_claude",
+      "training_seed": 2,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_3L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_3L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1787734154088741000
+      },
+      "checkpoint_sha256": "159ba71e9858a36aa43accd77b8bc0080bd6749709184f77637c7be76f9caad2",
+      "config_sha256": "dd0f3cf12b6f88d7b14a400d01b826916ffd03634851de553f00ceb5bcbe2ef7",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1367544",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_3L_claude_seed2/linear/attempt_1367544",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 73.27399849891663
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_075000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_3L_claude_seed2",
+      "model": "vits_3L_claude",
+      "training_seed": 2,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_3L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_3L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1787734154088741000
+      },
+      "checkpoint_sha256": "159ba71e9858a36aa43accd77b8bc0080bd6749709184f77637c7be76f9caad2",
+      "config_sha256": "dd0f3cf12b6f88d7b14a400d01b826916ffd03634851de553f00ceb5bcbe2ef7",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1399510",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_3L_claude_seed2/segmentation/attempt_1399510",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 31.99,
+        "acc": 40.9,
+        "aAcc": 74.37,
+        "dice": 44.77,
+        "fscore": 45.37,
+        "precision": 54.04,
+        "recall": 40.9
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_3L_claude_seed2/segmentation/attempt_1399510/model_best.pth"
+      }
+    },
+    {
+      "run": "vits_5L_claude_seed0",
+      "model": "vits_5L_claude",
+      "training_seed": 0,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_5L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_5L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1787737930373916000
+      },
+      "checkpoint_sha256": "276676a04a70653d315884fefc9c855314b13a68afe44464eda25afc5cc7dee4",
+      "config_sha256": "6b1c1f1b434763eb356b4b100ff523722aeebf2bb20626e99a212a2b199321fa",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1368301",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_5L_claude_seed0/linear/attempt_1368301",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 73.26200008392334
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_100000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_5L_claude_seed0",
+      "model": "vits_5L_claude",
+      "training_seed": 0,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_5L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_5L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1787737930373916000
+      },
+      "checkpoint_sha256": "276676a04a70653d315884fefc9c855314b13a68afe44464eda25afc5cc7dee4",
+      "config_sha256": "6b1c1f1b434763eb356b4b100ff523722aeebf2bb20626e99a212a2b199321fa",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1406105",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_5L_claude_seed0/segmentation/attempt_1406105",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 31.73,
+        "acc": 40.98,
+        "aAcc": 74.17,
+        "dice": 44.69,
+        "fscore": 44.99,
+        "precision": 54.24,
+        "recall": 40.98
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_5L_claude_seed0/segmentation/attempt_1406105/model_best.pth"
+      }
+    },
+    {
+      "run": "vits_5L_claude_seed1",
+      "model": "vits_5L_claude",
+      "training_seed": 1,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_5L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_5L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1788563556440156000
+      },
+      "checkpoint_sha256": "7356d8a1810880ca63b67702fd9e5018e4f773dcc90725549f2e188efa0326f1",
+      "config_sha256": "edf7741557cfb65126e533b34688eab0cfba624d1d315f9f600612bb6d4e0301",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1368361",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_5L_claude_seed1/linear/attempt_1368361",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 73.10199737548828
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_100000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_5L_claude_seed1",
+      "model": "vits_5L_claude",
+      "training_seed": 1,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_5L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_5L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1788563556440156000
+      },
+      "checkpoint_sha256": "7356d8a1810880ca63b67702fd9e5018e4f773dcc90725549f2e188efa0326f1",
+      "config_sha256": "edf7741557cfb65126e533b34688eab0cfba624d1d315f9f600612bb6d4e0301",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1406110",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_5L_claude_seed1/segmentation/attempt_1406110",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 32.69,
+        "acc": 41.79,
+        "aAcc": 74.66,
+        "dice": 45.79,
+        "fscore": 46.41,
+        "precision": 55.73,
+        "recall": 41.79
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_5L_claude_seed1/segmentation/attempt_1406110/model_best.pth"
+      }
+    },
+    {
+      "run": "vits_5L_claude_seed2",
+      "model": "vits_5L_claude",
+      "training_seed": 2,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_5L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_5L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1788174238059097000
+      },
+      "checkpoint_sha256": "427f5f7c34b6a68e64329cf8aa505e4f06fe34f564874997872af2f5defcd61d",
+      "config_sha256": "749c31e7514b6cafc5ebd81cda1d4f750a7c69bca85ebd0bb99265b6a986fa21",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1390009",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_5L_claude_seed2/linear/attempt_1390009",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 73.00999760627747
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_075000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_5L_claude_seed2",
+      "model": "vits_5L_claude",
+      "training_seed": 2,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_5L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_5L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1788174238059097000
+      },
+      "checkpoint_sha256": "427f5f7c34b6a68e64329cf8aa505e4f06fe34f564874997872af2f5defcd61d",
+      "config_sha256": "749c31e7514b6cafc5ebd81cda1d4f750a7c69bca85ebd0bb99265b6a986fa21",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1409250",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_5L_claude_seed2/segmentation/attempt_1409250",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 31.06,
+        "acc": 40.0,
+        "aAcc": 73.76,
+        "dice": 43.82,
+        "fscore": 44.12,
+        "precision": 53.57,
+        "recall": 40.0
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_5L_claude_seed2/segmentation/attempt_1409250/model_best.pth"
+      }
+    },
+    {
+      "run": "vits_6L_claude_seed0",
+      "model": "vits_6L_claude",
+      "training_seed": 0,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1788174062179044000
+      },
+      "checkpoint_sha256": "33c72c19a070b5f8757c04d45892a0f603d4a26114efed5298f8b2ea7fe45694",
+      "config_sha256": "5c787feef3832e9b7e370ea69d10befea9360c36caf9905cfac578eca30ce0a0",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1390011",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_6L_claude_seed0/linear/attempt_1390011",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 72.87399768829346
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_100000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_6L_claude_seed0",
+      "model": "vits_6L_claude",
+      "training_seed": 0,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed0/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1788174062179044000
+      },
+      "checkpoint_sha256": "33c72c19a070b5f8757c04d45892a0f603d4a26114efed5298f8b2ea7fe45694",
+      "config_sha256": "5c787feef3832e9b7e370ea69d10befea9360c36caf9905cfac578eca30ce0a0",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1409261",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_6L_claude_seed0/segmentation/attempt_1409261",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 30.72,
+        "acc": 39.66,
+        "aAcc": 73.54,
+        "dice": 43.37,
+        "fscore": 43.95,
+        "precision": 52.93,
+        "recall": 39.66
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_6L_claude_seed0/segmentation/attempt_1409261/model_best.pth"
+      }
+    },
+    {
+      "run": "vits_6L_claude_seed1",
+      "model": "vits_6L_claude",
+      "training_seed": 1,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1788406628894774000
+      },
+      "checkpoint_sha256": "99916fd9b5c8938a8097da1cfc30ad38e307e30a7409ccdc7701d8f8075e7f86",
+      "config_sha256": "48219288a71488ddb04ef59f4428459991fd5d7da2ea6099cbad11087eb69bb6",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1365752",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_6L_claude_seed1/linear/attempt_1365752",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 72.89599776268005
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_100000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_6L_claude_seed1",
+      "model": "vits_6L_claude",
+      "training_seed": 1,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed1/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1788406628894774000
+      },
+      "checkpoint_sha256": "99916fd9b5c8938a8097da1cfc30ad38e307e30a7409ccdc7701d8f8075e7f86",
+      "config_sha256": "48219288a71488ddb04ef59f4428459991fd5d7da2ea6099cbad11087eb69bb6",
+      "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+      "job_id": "1365753",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_6L_claude_seed1/segmentation/attempt_1365753",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 28.8,
+        "acc": 37.17,
+        "aAcc": 72.57,
+        "dice": 41.03,
+        "fscore": 41.58,
+        "precision": 51.77,
+        "recall": 37.17
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_6L_claude_seed1/segmentation/attempt_1365753/model_best.pth"
+      }
+    }
+  ],
+  "summary": [
+    {
+      "model": "vits_claude",
+      "task": "linear",
+      "metric": "accuracy",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 0,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 72.08133339881897,
+      "sample_std": 0.18249900034082622,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_claude",
+      "task": "segmentation",
+      "metric": "aAcc",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 73.57333333333334,
+      "sample_std": 0.4429823171790601,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_claude",
+      "task": "segmentation",
+      "metric": "acc",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 39.18,
+      "sample_std": 0.9462029380635003,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_claude",
+      "task": "segmentation",
+      "metric": "dice",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 42.730000000000004,
+      "sample_std": 0.7975587752636155,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_claude",
+      "task": "segmentation",
+      "metric": "fscore",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 43.406666666666666,
+      "sample_std": 0.6470188044665551,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_claude",
+      "task": "segmentation",
+      "metric": "mIoU",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 30.266666666666666,
+      "sample_std": 0.6998094978873416,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_claude",
+      "task": "segmentation",
+      "metric": "precision",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 52.46666666666667,
+      "sample_std": 0.7295432360959353,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_claude",
+      "task": "segmentation",
+      "metric": "recall",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 39.18,
+      "sample_std": 0.9462029380635003,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_1L_claude",
+      "task": "linear",
+      "metric": "accuracy",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 0,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 73.04666638374329,
+      "sample_std": 0.26518088983770943,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_1L_claude",
+      "task": "segmentation",
+      "metric": "aAcc",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 73.88666666666667,
+      "sample_std": 0.3429771615331432,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_1L_claude",
+      "task": "segmentation",
+      "metric": "acc",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 40.11,
+      "sample_std": 0.7036334272900931,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_1L_claude",
+      "task": "segmentation",
+      "metric": "dice",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 43.79666666666667,
+      "sample_std": 0.6653069467045515,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_1L_claude",
+      "task": "segmentation",
+      "metric": "fscore",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 44.18666666666667,
+      "sample_std": 0.5873102530463197,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_1L_claude",
+      "task": "segmentation",
+      "metric": "mIoU",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 31.05,
+      "sample_std": 0.5747173218200406,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_1L_claude",
+      "task": "segmentation",
+      "metric": "precision",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 53.303333333333335,
+      "sample_std": 0.7447370900749674,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_1L_claude",
+      "task": "segmentation",
+      "metric": "recall",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 40.11,
+      "sample_std": 0.7036334272900931,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_3L_claude",
+      "task": "linear",
+      "metric": "accuracy",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 0,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 73.33799997965495,
+      "sample_std": 0.19984169623986864,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_3L_claude",
+      "task": "segmentation",
+      "metric": "aAcc",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 74.47333333333334,
+      "sample_std": 0.3564173583501969,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_3L_claude",
+      "task": "segmentation",
+      "metric": "acc",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 41.336666666666666,
+      "sample_std": 0.907542469162374,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_3L_claude",
+      "task": "segmentation",
+      "metric": "dice",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 45.02,
+      "sample_std": 0.7279423054061361,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_3L_claude",
+      "task": "segmentation",
+      "metric": "fscore",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 45.626666666666665,
+      "sample_std": 0.45324754090158437,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_3L_claude",
+      "task": "segmentation",
+      "metric": "mIoU",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 32.11333333333333,
+      "sample_std": 0.5357549190939229,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_3L_claude",
+      "task": "segmentation",
+      "metric": "precision",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 54.06333333333333,
+      "sample_std": 0.23586719427112612,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_3L_claude",
+      "task": "segmentation",
+      "metric": "recall",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 41.336666666666666,
+      "sample_std": 0.907542469162374,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_5L_claude",
+      "task": "linear",
+      "metric": "accuracy",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 0,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 73.12466502189636,
+      "sample_std": 0.12752128775297147,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_5L_claude",
+      "task": "segmentation",
+      "metric": "aAcc",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 74.19666666666667,
+      "sample_std": 0.45059220292114405,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_5L_claude",
+      "task": "segmentation",
+      "metric": "acc",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 40.92333333333333,
+      "sample_std": 0.8963444278475392,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_5L_claude",
+      "task": "segmentation",
+      "metric": "dice",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 44.766666666666666,
+      "sample_std": 0.9872351965632771,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_5L_claude",
+      "task": "segmentation",
+      "metric": "fscore",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 45.17333333333333,
+      "sample_std": 1.1559555931493786,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_5L_claude",
+      "task": "segmentation",
+      "metric": "mIoU",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 31.826666666666664,
+      "sample_std": 0.819288309042264,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_5L_claude",
+      "task": "segmentation",
+      "metric": "precision",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 54.513333333333335,
+      "sample_std": 1.1056370712549977,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_5L_claude",
+      "task": "segmentation",
+      "metric": "recall",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "mean": 40.92333333333333,
+      "sample_std": 0.8963444278475392,
+      "ddof": 1,
+      "coverage": "complete"
+    },
+    {
+      "model": "vits_6L_claude",
+      "task": "linear",
+      "metric": "accuracy",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 0,
+      "training_seeds": [
+        0,
+        1
+      ],
+      "n": 2,
+      "mean": 72.88499772548676,
+      "sample_std": 0.015556401785370988,
+      "ddof": 1,
+      "coverage": "incomplete"
+    },
+    {
+      "model": "vits_6L_claude",
+      "task": "segmentation",
+      "metric": "aAcc",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1
+      ],
+      "n": 2,
+      "mean": 73.055,
+      "sample_std": 0.6858935777509604,
+      "ddof": 1,
+      "coverage": "incomplete"
+    },
+    {
+      "model": "vits_6L_claude",
+      "task": "segmentation",
+      "metric": "acc",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1
+      ],
+      "n": 2,
+      "mean": 38.415,
+      "sample_std": 1.7606958851544998,
+      "ddof": 1,
+      "coverage": "incomplete"
+    },
+    {
+      "model": "vits_6L_claude",
+      "task": "segmentation",
+      "metric": "dice",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1
+      ],
+      "n": 2,
+      "mean": 42.2,
+      "sample_std": 1.6546298679765186,
+      "ddof": 1,
+      "coverage": "incomplete"
+    },
+    {
+      "model": "vits_6L_claude",
+      "task": "segmentation",
+      "metric": "fscore",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1
+      ],
+      "n": 2,
+      "mean": 42.765,
+      "sample_std": 1.6758430714121209,
+      "ddof": 1,
+      "coverage": "incomplete"
+    },
+    {
+      "model": "vits_6L_claude",
+      "task": "segmentation",
+      "metric": "mIoU",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1
+      ],
+      "n": 2,
+      "mean": 29.759999999999998,
+      "sample_std": 1.35764501987817,
+      "ddof": 1,
+      "coverage": "incomplete"
+    },
+    {
+      "model": "vits_6L_claude",
+      "task": "segmentation",
+      "metric": "precision",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1
+      ],
+      "n": 2,
+      "mean": 52.35,
+      "sample_std": 0.8202438661763927,
+      "ddof": 1,
+      "coverage": "incomplete"
+    },
+    {
+      "model": "vits_6L_claude",
+      "task": "segmentation",
+      "metric": "recall",
+      "units": "percent",
+      "checkpoint": "training_142999/teacher_checkpoint.pth",
+      "eval_seed": 100,
+      "training_seeds": [
+        0,
+        1
+      ],
+      "n": 2,
+      "mean": 38.415,
+      "sample_std": 1.7606958851544998,
+      "ddof": 1,
+      "coverage": "incomplete"
+    }
+  ],
+  "excluded": [
+    {
+      "run": "vits_claude_seed0",
+      "task": "linear",
+      "attempt": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/linear/attempt_1363393",
+      "reason": "running: No completion marker"
+    },
+    {
+      "run": "vits_claude_seed0",
+      "task": "linear",
+      "attempt": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/linear/attempt_1363468",
+      "reason": "running: No completion marker"
+    },
+    {
+      "run": "vits_claude_seed0",
+      "task": "segmentation",
+      "attempt": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/segmentation/attempt_1363394",
+      "reason": "failed: Command '['torchrun', '--standalone', '--nnodes=1', '--nproc-per-node=1', '/project/aip-papyan/yucz/dinov3/eval_jobs/sweep_segmentation.py', 'config=/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/segmentation/attempt_1363394/requested_config.yaml', 'output_dir=/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/segmentation/attempt_1363394']' returned non-zero exit status 1."
+    },
+    {
+      "run": "vits_6L_claude_seed2",
+      "task": "linear",
+      "reason": "Unfinished training; job 273972 failed (rendezvous port 33279 occupied). Leave untouched."
+    },
+    {
+      "run": "vits_6L_claude_seed2",
+      "task": "segmentation",
+      "reason": "Unfinished training; job 273972 failed (rendezvous port 33279 occupied). Leave untouched."
+    }
+  ]
+}

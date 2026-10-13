@@ -1,0 +1,41 @@
+model,task,metric,units,checkpoint,eval_seed,training_seeds,n,mean,sample_std,ddof,coverage
+vits_claude,linear,accuracy,percent,training_142999/teacher_checkpoint.pth,0,"[0, 1, 2]",3,72.08133339881897,0.18249900034082622,1,complete
+vits_claude,segmentation,aAcc,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,73.57333333333334,0.4429823171790601,1,complete
+vits_claude,segmentation,acc,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,39.18,0.9462029380635003,1,complete
+vits_claude,segmentation,dice,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,42.730000000000004,0.7975587752636155,1,complete
+vits_claude,segmentation,fscore,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,43.406666666666666,0.6470188044665551,1,complete
+vits_claude,segmentation,mIoU,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,30.266666666666666,0.6998094978873416,1,complete
+vits_claude,segmentation,precision,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,52.46666666666667,0.7295432360959353,1,complete
+vits_claude,segmentation,recall,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,39.18,0.9462029380635003,1,complete
+vits_1L_claude,linear,accuracy,percent,training_142999/teacher_checkpoint.pth,0,"[0, 1, 2]",3,73.04666638374329,0.26518088983770943,1,complete
+vits_1L_claude,segmentation,aAcc,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,73.88666666666667,0.3429771615331432,1,complete
+vits_1L_claude,segmentation,acc,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,40.11,0.7036334272900931,1,complete
+vits_1L_claude,segmentation,dice,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,43.79666666666667,0.6653069467045515,1,complete
+vits_1L_claude,segmentation,fscore,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,44.18666666666667,0.5873102530463197,1,complete
+vits_1L_claude,segmentation,mIoU,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,31.05,0.5747173218200406,1,complete
+vits_1L_claude,segmentation,precision,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,53.303333333333335,0.7447370900749674,1,complete
+vits_1L_claude,segmentation,recall,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,40.11,0.7036334272900931,1,complete
+vits_3L_claude,linear,accuracy,percent,training_142999/teacher_checkpoint.pth,0,"[0, 1, 2]",3,73.33799997965495,0.19984169623986864,1,complete
+vits_3L_claude,segmentation,aAcc,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,74.47333333333334,0.3564173583501969,1,complete
+vits_3L_claude,segmentation,acc,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,41.336666666666666,0.907542469162374,1,complete
+vits_3L_claude,segmentation,dice,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,45.02,0.7279423054061361,1,complete
+vits_3L_claude,segmentation,fscore,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,45.626666666666665,0.45324754090158437,1,complete
+vits_3L_claude,segmentation,mIoU,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,32.11333333333333,0.5357549190939229,1,complete
+vits_3L_claude,segmentation,precision,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,54.06333333333333,0.23586719427112612,1,complete
+vits_3L_claude,segmentation,recall,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,41.336666666666666,0.907542469162374,1,complete
+vits_5L_claude,linear,accuracy,percent,training_142999/teacher_checkpoint.pth,0,"[0, 1, 2]",3,73.12466502189636,0.12752128775297147,1,complete
+vits_5L_claude,segmentation,aAcc,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,74.19666666666667,0.45059220292114405,1,complete
+vits_5L_claude,segmentation,acc,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,40.92333333333333,0.8963444278475392,1,complete
+vits_5L_claude,segmentation,dice,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,44.766666666666666,0.9872351965632771,1,complete
+vits_5L_claude,segmentation,fscore,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,45.17333333333333,1.1559555931493786,1,complete
+vits_5L_claude,segmentation,mIoU,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,31.826666666666664,0.819288309042264,1,complete
+vits_5L_claude,segmentation,precision,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,54.513333333333335,1.1056370712549977,1,complete
+vits_5L_claude,segmentation,recall,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1, 2]",3,40.92333333333333,0.8963444278475392,1,complete
+vits_6L_claude,linear,accuracy,percent,training_142999/teacher_checkpoint.pth,0,"[0, 1]",2,72.88499772548676,0.015556401785370988,1,incomplete
+vits_6L_claude,segmentation,aAcc,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1]",2,73.055,0.6858935777509604,1,incomplete
+vits_6L_claude,segmentation,acc,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1]",2,38.415,1.7606958851544998,1,incomplete
+vits_6L_claude,segmentation,dice,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1]",2,42.2,1.6546298679765186,1,incomplete
+vits_6L_claude,segmentation,fscore,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1]",2,42.765,1.6758430714121209,1,incomplete
+vits_6L_claude,segmentation,mIoU,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1]",2,29.759999999999998,1.35764501987817,1,incomplete
+vits_6L_claude,segmentation,precision,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1]",2,52.35,0.8202438661763927,1,incomplete
+vits_6L_claude,segmentation,recall,percent,training_142999/teacher_checkpoint.pth,100,"[0, 1]",2,38.415,1.7606958851544998,1,incomplete

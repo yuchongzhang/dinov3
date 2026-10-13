@@ -8,8 +8,58 @@ dist/
 
 **/notebooks
 
-# Ignore shell scripts
-*.sh
+# Local agent/editor settings and credentials
+.codex
+.codex/
+.claude/
+.agents/
+.aws/
+.env
+.env.*
+
+# Python, build, and experiment caches
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+cache/
+venv/
+.venv/
+
+# Training runs, checkpoints, tracking data, and scheduler logs
+/vit_small_variants_run1/
+/vitb_mixed_12L/
+/vits_claude/
+/vits_*_claude/
+/logs/
+/logs_eval/
+wandb/
+checkpoints/
+ckpt/
+*.pth
+*.pt
+*.ckpt
+*.distcp
+*.safetensors
+*.pkl
+*.pickle
+*.out
+*.err
+slurm-*.log
+.submission_file_*.sh
+*_submission.sh
+
+# Generated measurement data and plots; retain all Python and shell sources
+/measurements/*_results*/
+/measurements/dino_pca_fg_score*/
+/measurements/nested_anova_records_test/
+/measurements/*visualizations/
+/measurements/pca_plots/
+/measurements/test_image_spectrum/
+/measurements/test_image.jpg
+
+# Small, curated sweep reports in eval_results/ are intentionally versioned.
 
 # Ignore swap files
 *.swp

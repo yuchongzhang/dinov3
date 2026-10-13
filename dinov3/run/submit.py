@@ -89,6 +89,25 @@ def get_submitit_parser():
         help="Nodes to exclude, default: '%(default)s'",
     )
     parser.add_argument(
+        "--cpus-per-task",
+        default=None,
+        type=int,
+        help="Number of CPUs per task, overrides cluster default if set, default: %(default)s",
+    )
+    parser.add_argument(
+        "--mem-gb",
+        default=None,
+        type=int,
+        help="Memory in GB to request per node (0 = all available), overrides cluster default if set, default: %(default)s",
+    )
+    parser.add_argument(
+        "--slurm-setup",
+        default=[],
+        nargs="+",
+        type=str,
+        help="Shell commands to run inside the SLURM job before the main program, e.g. 'module load gcc arrow/19.0.1'",
+    )
+    parser.add_argument(
         "--output-dir",
         type=str,
         help="output dir",
@@ -169,15 +188,22 @@ def submit_jobs(class_to_submit, output_dir, submitit_args, name="fairvit"):
         kwargs["slurm_comment"] = submitit_args.comment
     if submitit_args.exclude:
         kwargs["slurm_exclude"] = submitit_args.exclude
+    if submitit_args.slurm_partition:
+        kwargs["slurm_partition"] = submitit_args.slurm_partition
+    if submitit_args.slurm_qos:
+        kwargs["slurm_qos"] = submitit_args.slurm_qos
+    if submitit_args.slurm_account:
+        kwargs["slurm_account"] = submitit_args.slurm_account
+    if submitit_args.slurm_setup:
+        kwargs["slurm_setup"] = submitit_args.slurm_setup
 
     executor_params = get_slurm_executor_parameters(
         nodes=submitit_args.nodes,
         num_gpus_per_node=submitit_args.ngpus,
+        cpus_per_task=submitit_args.cpus_per_task,
+        mem_gb=submitit_args.mem_gb,
         timeout_min=submitit_args.timeout,  # max is 60 * 72
         slurm_signal_delay_s=120,
-        slurm_partition=submitit_args.slurm_partition,
-        slurm_qos=submitit_args.slurm_qos,
-        # slurm_account=submitit_args.slurm_account,
         slurm_additional_parameters=dict(nice=submitit_args.slurm_nice),
         **kwargs,
     )

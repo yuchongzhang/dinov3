@@ -14,6 +14,8 @@ import torch.nn as nn
 from dinov3.layers.fp8_linear import convert_linears_to_fp8
 
 from . import vision_transformer as vits
+from . import mixed_vision_transformer as mixed_vits
+from . import interleave_vision_transformer as interleave_vits
 from . import convnext
 
 logger = logging.getLogger("dinov3")
@@ -56,11 +58,20 @@ def build_model(args, only_teacher=False, img_size=224, device=None):
             untie_global_and_local_cls_norm=args.untie_global_and_local_cls_norm,
             device=device,
         )
-        teacher = vits.__dict__[args.arch](**vit_kwargs)
+        if "mixed" in args.arch:
+            model_dict = mixed_vits.__dict__
+            vit_kwargs["num_vanilla_heads"] = getattr(args, "num_vanilla_heads", 0)
+        elif "interleave" in args.arch:
+            model_dict = interleave_vits.__dict__
+            vit_kwargs["num_vanilla_heads"] = getattr(args, "num_vanilla_heads", 0)
+            vit_kwargs["attn_first"] = getattr(args, "attn_first", True)
+        else:
+            model_dict = vits.__dict__
+        teacher = model_dict[args.arch](**vit_kwargs)
         teacher = init_fp8(teacher, args)
         if only_teacher:
             return teacher, teacher.embed_dim
-        student = vits.__dict__[args.arch](
+        student = model_dict[args.arch](
             **vit_kwargs,
             drop_path_rate=args.drop_path_rate,
         )

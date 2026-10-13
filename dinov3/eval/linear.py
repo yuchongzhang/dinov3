@@ -49,6 +49,7 @@ logger = logging.getLogger("dinov3")
 RESULTS_FILENAME = "results-linear.csv"
 # Can be several keys, depending on if multiple test sets are chosen and if doing few-shot
 MAIN_METRICS = [".*_accuracy(_mean)?"]
+DEFAULT_SEED = 0
 
 
 class OptimizerType(Enum):
@@ -78,7 +79,7 @@ class SchedulerType(Enum):
         return scheduler
 
 
-_DEFAULT_LR_LIST: Tuple[float, ...] = (1e-5, 2e-5, 5e-5, 1e-4, 2e-4, 5e-4, 1e-3, 2e-3, 5e-3, 1e-2, 2e-2, 5e-2, 0.1)
+_DEFAULT_LR_LIST: Tuple[float, ...] = (1e-5, 2e-5, 5e-5, 1e-4, 2e-4, 5e-4, 1e-3, 2e-3, 5e-3, 1e-2, 2e-2, 5e-2, 7e-2, 0.1, 0.15, 0.2)
 
 
 @dataclass
@@ -91,11 +92,14 @@ class TrainConfig:
     # Linear Head Parameters
     learning_rates: Tuple[float, ...] = _DEFAULT_LR_LIST  # learning rates to grid search
     n_last_blocks_list: Tuple[int] = (1,)  # number of backbone last blocks used for the linear classifier
+    # Pooling variants to sweep. True concatenates the CLS token with the mean of the
+    # patch tokens; False probes the CLS token alone.
+    use_avgpool_list: Tuple[bool, ...] = (True,)
     loss_type: LossType = LossType.CROSS_ENTROPY
     optimizer_type: OptimizerType = OptimizerType.SGD
     scheduler_type: SchedulerType = SchedulerType.COSINE_ANNEALING
     epochs: int = 10  # number of training epochs
-    epoch_length: int = 1250  # length of an epoch in number of iterations
+    epoch_length: int = 10010  # length of an epoch in number of iterations
     save_checkpoint_iterations: int | None = (
         None  # number of iterations between two checkpoint saves (default: one epoch)
     )
@@ -134,6 +138,7 @@ class LinearEvalConfig:
     transform: TransformConfig = field(default_factory=TransformConfig)
     few_shot: FewShotConfig = field(default_factory=FewShotConfig)
     save_results: bool = False  # save predictions and targets in the output directory
+    seed: int = DEFAULT_SEED  # seeds classifier init, training data order, augmentations and few-shot subsets
     output_dir: str = ""
 
 
@@ -209,11 +214,18 @@ def scale_lr(learning_rates, batch_size):
     return learning_rates * (batch_size * distributed.get_world_size()) / 256.0
 
 
-def setup_linear_classifiers(sample_output, n_last_blocks_list, learning_rates, batch_size, num_classes=1000):
+def setup_linear_classifiers(
+    sample_output,
+    n_last_blocks_list,
+    learning_rates,
+    batch_size,
+    num_classes=1000,
+    use_avgpool_list=(True,),
+):
     linear_classifiers_dict = nn.ModuleDict()
     optim_param_groups = []
     for n in n_last_blocks_list:
-        for avgpool in [True]:
+        for avgpool in use_avgpool_list:
             for _lr in learning_rates:
                 lr = scale_lr(_lr, batch_size)
                 out_dim = create_linear_input(sample_output, use_n_blocks=n, use_avgpool=avgpool).shape[1]
@@ -221,9 +233,16 @@ def setup_linear_classifiers(sample_output, n_last_blocks_list, learning_rates, 
                     out_dim, use_n_blocks=n, use_avgpool=avgpool, num_classes=num_classes
                 )
                 linear_classifier = linear_classifier.cuda()
-                linear_classifiers_dict[
-                    f"classifier_{n}_blocks_avgpool_{avgpool}_lr_{lr:.5f}".replace(".", "_")
-                ] = linear_classifier
+                # 6 decimals, not 5: at small `batch_size * world_size` neighbouring
+                # entries of the LR grid can round to the same 5-decimal key, which
+                # silently drops one of them from the ModuleDict (it keeps its optimizer
+                # param group but never receives gradients).
+                key = f"classifier_{n}_blocks_avgpool_{avgpool}_lr_{lr:.6f}".replace(".", "_")
+                assert key not in linear_classifiers_dict, (
+                    f"Learning rates {_lr} and another entry collide on key '{key}'; "
+                    "widen the format or drop the duplicate."
+                )
+                linear_classifiers_dict[key] = linear_classifier
                 optim_param_groups.append({"params": linear_classifier.parameters(), "lr": lr})
 
     linear_classifiers = AllClassifiers(linear_classifiers_dict)
@@ -426,6 +445,7 @@ def setup_linear_training(
         config.learning_rates,
         config.batch_size,
         training_num_classes,
+        use_avgpool_list=config.use_avgpool_list,
     )
     max_iter = config.epochs * config.epoch_length
     optimizer = config.optimizer_type.get_optimizer(optim_param_groups=optim_param_groups)
@@ -472,6 +492,7 @@ def train_linear_classifiers(
     training_num_classes: int,
     val_evaluator: Evaluator,
     checkpoint_output_dir: str,
+    seed: int = DEFAULT_SEED,
 ):
     (linear_classifiers, start_iter, max_iter, criterion, optimizer, scheduler, best_accuracy,) = setup_linear_training(
         config=train_config,
@@ -488,7 +509,7 @@ def train_linear_classifiers(
         batch_size=train_config.batch_size,
         num_workers=train_config.num_workers,
         shuffle=True,
-        seed=0,
+        seed=seed,
         sampler_type=sampler_type,
         sampler_advance=start_iter,
         drop_last=True,
@@ -595,6 +616,7 @@ def eval_linear_with_model(*, model: torch.nn.Module, autocast_dtype, config: Li
         few_shot_eval=config.few_shot.enable,
         few_shot_k_or_percent=config.few_shot.k_or_percent,
         few_shot_n_tries=config.few_shot.n_tries,
+        seed=config.seed,
     )
     n_last_blocks = max(config.train.n_last_blocks_list)
     autocast_ctx = partial(torch.autocast, device_type="cuda", enabled=True, dtype=autocast_dtype)
@@ -632,6 +654,7 @@ def eval_linear_with_model(*, model: torch.nn.Module, autocast_dtype, config: Li
             training_num_classes=training_num_classes,
             val_evaluator=val_evaluator,
             checkpoint_output_dir=checkpoint_output_dir,
+            seed=config.seed,
         )
         checkpoint_output_dirs.append(checkpoint_output_dir)
         results_dict[_try] = val_evaluator.evaluate_and_maybe_save(
@@ -679,7 +702,10 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
     eval_args = cli_parser(argv)
-    with job_context(output_dir=eval_args["output_dir"]):
+    # Seeds the process RNGs (classifier init, dataloader worker seeds) before anything
+    # random happens; `benchmark_launcher` re-reads the same value off the parsed config
+    # for the sampler and the few-shot subsets.
+    with job_context(output_dir=eval_args["output_dir"], seed=int(eval_args.get("seed", DEFAULT_SEED))):
         benchmark_launcher(eval_args=eval_args)
     return 0
 

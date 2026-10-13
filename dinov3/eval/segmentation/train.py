@@ -202,6 +202,7 @@ def train_segmentation(
             num_workers=config.num_workers,
             sampler_type=train_sampler_type,
             shuffle=True,
+            seed=config.seed,
             persistent_workers=False,
             worker_init_fn=init_fn,
         )

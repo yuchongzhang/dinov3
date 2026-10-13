@@ -1,5 +1,6 @@
 ftfy
 omegaconf
+plotly
 regex
 scikit-learn
 submitit

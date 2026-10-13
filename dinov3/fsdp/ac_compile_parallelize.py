@@ -144,7 +144,14 @@ def ac_compile_parallelize(
         raise NotImplementedError
 
     from dinov3.models.convnext import ConvNeXt
+    from dinov3.models.mixed_vision_transformer import MixedDinoVisionTransformer
     from dinov3.models.vision_transformer import DinoVisionTransformer
+
+    _transformer_fsdp_utils = dict(
+        compile_fn=compile_transformer,
+        fsdp_fn=fsdp_transformer,
+        activation_checkpointing_fn=activation_checkpoint_transformer,
+    )
 
     # FSDP utils for each architecture type
     ARCH_TYPE_MAP = {
@@ -153,11 +160,8 @@ def ac_compile_parallelize(
             fsdp_fn=fsdp_convnext,
             activation_checkpointing_fn=activation_checkpoint_convnext,
         ),
-        DinoVisionTransformer: dict(
-            compile_fn=compile_transformer,
-            fsdp_fn=fsdp_transformer,
-            activation_checkpointing_fn=activation_checkpoint_transformer,
-        ),
+        DinoVisionTransformer: _transformer_fsdp_utils,
+        MixedDinoVisionTransformer: _transformer_fsdp_utils,
     }
 
     # 1/ AC on blocks

@@ -63,11 +63,25 @@ def benchmark_launcher(eval_args: dict[str, object]) -> dict[str, Any]:
     return results_dict
 
 
+def resolve_seed(eval_args: dict[str, object]) -> int:
+    """Resolve the seed the same way `benchmark_launcher` resolves the rest of the config.
+
+    `job_context` has to seed the process RNGs before the decoder head is built, which
+    happens before the config is merged, so the precedence (dataclass default < config
+    yaml < command line) is replayed here on just this one field.
+    """
+    seed = SegmentationConfig.seed
+    config_path = eval_args.get("config")
+    if config_path is not None:
+        seed = OmegaConf.load(config_path).get("seed", seed)  # type: ignore[union-attr]
+    return int(eval_args.get("seed", seed))
+
+
 def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
     eval_args = cli_parser(argv)
-    with job_context(output_dir=eval_args["output_dir"]):
+    with job_context(output_dir=eval_args["output_dir"], seed=resolve_seed(eval_args)):
         benchmark_launcher(eval_args=eval_args)
     return 0
 

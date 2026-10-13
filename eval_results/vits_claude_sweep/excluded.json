@@ -1,0 +1,30 @@
+[
+  {
+    "run": "vits_claude_seed0",
+    "task": "linear",
+    "attempt": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/linear/attempt_1363393",
+    "reason": "running: No completion marker"
+  },
+  {
+    "run": "vits_claude_seed0",
+    "task": "linear",
+    "attempt": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/linear/attempt_1363468",
+    "reason": "running: No completion marker"
+  },
+  {
+    "run": "vits_claude_seed0",
+    "task": "segmentation",
+    "attempt": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/segmentation/attempt_1363394",
+    "reason": "failed: Command '['torchrun', '--standalone', '--nnodes=1', '--nproc-per-node=1', '/project/aip-papyan/yucz/dinov3/eval_jobs/sweep_segmentation.py', 'config=/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/segmentation/attempt_1363394/requested_config.yaml', 'output_dir=/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/segmentation/attempt_1363394']' returned non-zero exit status 1."
+  },
+  {
+    "run": "vits_6L_claude_seed2",
+    "task": "linear",
+    "reason": "Unfinished training; job 273972 failed (rendezvous port 33279 occupied). Leave untouched."
+  },
+  {
+    "run": "vits_6L_claude_seed2",
+    "task": "segmentation",
+    "reason": "Unfinished training; job 273972 failed (rendezvous port 33279 occupied). Leave untouched."
+  }
+]
