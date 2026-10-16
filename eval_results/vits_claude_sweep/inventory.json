@@ -879,31 +879,60 @@
     "run": "vits_6L_claude_seed2",
     "model": "vits_6L_claude",
     "training_seed": 2,
-    "complete": false,
+    "complete": true,
     "config": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed2/config.yaml",
     "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
     "completion_evidence": {
-      "last_iteration": 95440,
-      "final_checkpoint_exists": false,
-      "final_iteration_in_log": false,
-      "successful_completion_in_log": false,
-      "log": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed2/logs/log.txt",
+      "last_iteration": 142999,
+      "final_checkpoint_exists": true,
+      "final_iteration_in_log": true,
+      "successful_completion_in_log": true,
+      "log": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed2/1655440_0_log.out",
       "metrics": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed2/training_metrics.json"
     },
-    "latest_restart": 94379,
-    "latest_restart_checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed2/ckpt/94379",
+    "latest_restart": 141569,
+    "latest_restart_checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed2/ckpt/141569",
     "evaluations": {
       "linear": {
-        "status": "excluded",
+        "status": "completed",
         "eval_seed": 0,
-        "slurm": {}
+        "slurm": {
+          "1709486": {
+            "state": "COMPLETED",
+            "exit_code": "0:0"
+          }
+        },
+        "job_ids": [
+          "1709486"
+        ],
+        "submissions": [
+          {
+            "job_id": "1709486",
+            "array_task_id": 0
+          }
+        ],
+        "array_task_id": 0
       },
       "segmentation": {
-        "status": "excluded",
+        "status": "completed",
         "eval_seed": 100,
-        "slurm": {}
+        "slurm": {
+          "1709487": {
+            "state": "COMPLETED",
+            "exit_code": "0:0"
+          }
+        },
+        "job_ids": [
+          "1709487"
+        ],
+        "submissions": [
+          {
+            "job_id": "1709487",
+            "array_task_id": 0
+          }
+        ],
+        "array_task_id": 0
       }
-    },
-    "excluded_reason": "Unfinished training; job 273972 failed (rendezvous port 33279 occupied). Leave untouched."
+    }
   }
 ]

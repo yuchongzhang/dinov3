@@ -1,7 +1,7 @@
 {
-  "slurm_job_id": "1592545",
-  "report_generated_utc": "2026-10-12T16:36:26Z",
-  "valid_evaluations": 28,
+  "slurm_job_id": "1709488",
+  "report_generated_utc": "2026-10-14T21:16:04Z",
+  "valid_evaluations": 30,
   "summary_rows_checked": 40,
   "independent_statistics": "numpy mean and std(ddof=1), absolute tolerance 1e-12",
   "raw_results_match": true,

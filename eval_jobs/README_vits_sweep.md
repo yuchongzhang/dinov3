@@ -11,9 +11,9 @@ bash eval_jobs/submit_vits_sweep.sh
 
 The bootstrap stages the existing ImageNet binary caches and ADE20K archive, including
 the repository's required train/val split lists, in a CPU job. It validates all listed image/mask pairs,
-verifies all 14 final teacher checkpoints and 224/512 features in one GPU job, then launches
+verifies all 15 final teacher checkpoints and 224/512 features in one GPU job, then launches
 both `vits_claude_seed0` evaluations. Only successful, compatible pilots release the
-remaining 26 evaluations. Each task array allows at most two concurrent jobs. Slurm
+remaining 28 evaluations. Each task array allows at most two concurrent jobs. Slurm
 dependencies schedule the continuation and final aggregation without polling or sleeps.
 
 Linear probing uses evaluation seed 0, frozen last-block CLS and mean patch features,
@@ -30,7 +30,26 @@ existing dinov3 environment. ADE20K unpacks only into `$SLURM_TMPDIR`.
 
 Outputs and logs: `$SCRATCH/dinov3_results/vits_claude_sweep_eval`. The inventory includes
 all 15 training runs, completion evidence, restart/final checkpoint paths, task status,
-and Slurm array job IDs. `vits_6L_claude_seed2` remains excluded and untouched.
+and Slurm array job IDs. Resumed training is accepted only when final metrics,
+the final checkpoint, the saved seed, and both completion markers in a training
+log agree. The completed `vits_6L_claude_seed2` run is now eligible.
+
+On 2026-10-14, the seed-2 extension uses `complete_vits_sweep.sh` and
+`complete_vits_sweep.py` to audit the inventory/reporting source change, compare
+both protocols against the accepted seed-1 configurations, and revalidate all
+28 prior evaluations. GPU verification then releases only the two missing
+seed-2 evaluations. A dependent CPU job runs after both arrays terminate,
+aggregates the results, independently verifies all 30 evaluations and 40 metric
+summaries, and rewrites `RESULTS.md` together with the CSV/JSON artifacts. Failed
+evaluations leave the report partial and fail final verification. Workflow job
+IDs are recorded in `$SWEEP_ROOT/seed2_extension.json`.
+
+The submitted extension jobs are: preflight **1709455** (passed), GPU
+verification **1709471** (passed), launch controller **1709482** (passed),
+linear probing **1709486** (03:00:00), segmentation **1709487** (04:45:00),
+and final aggregation/verification/report refresh **1709488** (after both
+evaluation arrays terminate). Both evaluation jobs were confirmed training
+normally after startup.
 
 ```bash
 # Retry one failed task independently; completed compatible results are skipped:
@@ -46,7 +65,7 @@ bash eval_jobs/submit_vits_sweep.sh test
 
 For GPU re-verification, use the resource flags emitted by the dry run for `sweep_gpu.sh verify`.
 Do not change source during running evaluations: the provenance check intentionally rejects
-results from different evaluation code or configurations. Exact scheduling-only changes
+results from different evaluation code or configurations. Exact orchestration-only changes
 may be accepted through an audited source-hash migration in `scheduling_compatibility.json`;
 the original verification and attempt fingerprints remain intact. Each retry writes a fresh attempt
 directory. The retry utility checks submitted jobs to avoid concurrent duplicate submissions.
@@ -57,7 +76,7 @@ are explicitly listed in `excluded.json`.
 Validated compact reports are copied to `eval_results/vits_claude_sweep/`: `per_run.csv`,
 `summary.csv`, `summary.json`, `inventory.csv`, `inventory.json`, and `excluded.json`.
 Means and sample standard deviations (`ddof=1`) remain in percentage units. Coverage is
-complete only at n=3; 6L has n=2 when its two finished runs succeed. Empty means and
+complete only at n=3; the two new 6L evaluations bring that model from n=2 to n=3. Empty means and
 standard deviations with fewer than two observations are null. Reports generated while
 jobs run are partial and clearly show missing evaluations; final aggregation runs after
 both arrays terminate, including failed jobs.

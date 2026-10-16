@@ -29,13 +29,15 @@ mkdir -p "$run_dir/ckpt" "$SLURM_TMPDIR/source"
 tar -xzf "$source_archive" -C "$SLURM_TMPDIR/source"
 cp "$saved_config" "$run_dir/resume_input_config.yaml"
 
-export PYTHONPATH="$SLURM_TMPDIR/source"
+# Keep the module's site-packages shim (platformdirs, pyarrow, etc.).
+export PYTHONPATH="$SLURM_TMPDIR/source${PYTHONPATH:+:$PYTHONPATH}"
 export PYTHONPYCACHEPREFIX="$SLURM_TMPDIR/pycache"
 export TMPDIR="$SLURM_TMPDIR"
 export XDG_CACHE_HOME="$resume_root/cache"
 export HF_HOME="$XDG_CACHE_HOME/huggingface"
 export TORCHINDUCTOR_CACHE_DIR="$XDG_CACHE_HOME/torchinductor"
 export TRITON_CACHE_DIR="$XDG_CACHE_HOME/triton"
+export PYTORCH_ALLOC_CONF=expandable_segments:True
 export WANDB_DIR="$run_dir"
 export WANDB_CACHE_DIR="$XDG_CACHE_HOME/wandb"
 export WANDB_DATA_DIR="$run_dir/wandb-data"
@@ -61,6 +63,7 @@ fi
 # Preserve the original W&B identity despite moving job output to scratch.
 # --standalone selects a free rendezvous port, avoiding the failed fixed port.
 cd "$SLURM_TMPDIR/source"
+python -c 'import platformdirs, pyarrow, torch, torchvision, wandb; assert torch.cuda.is_available(); assert torch.cuda.device_count() == 4; print("Resume environment imports and four GPUs verified", flush=True)'
 torchrun --standalone --nnodes=1 --nproc-per-node=4 \
     -m dinov3.train.train \
     --config-file "$run_dir/resume_input_config.yaml" \

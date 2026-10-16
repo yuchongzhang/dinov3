@@ -128,6 +128,30 @@ class AggregationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             sweep.parse_result("segmentation", output)
 
+    def test_resumed_training_completion_requires_all_evidence(self):
+        train_root = self.root / "training"
+        run = train_root / "vits_6L_claude_seed2"
+        final = run / "eval/training_142999/teacher_checkpoint.pth"
+        final.parent.mkdir(parents=True)
+        final.write_bytes(b"test checkpoint")
+        (run / "config.yaml").write_text("train: {seed: 2}\n")
+        (run / "training_metrics.json").write_text('{"iteration": 142999}\n')
+        resumed_log = run / "1655440_0_log.out"
+        resumed_log.write_text("Training [142999/143000]\nJob completed successfully\n")
+        with patch.object(sweep, "TRAIN_ROOT", train_root), patch.object(sweep, "MODELS", ("vits_6L_claude",)):
+            row = sweep.inventory()[2]
+            self.assertTrue(row["complete"])
+            self.assertNotIn("excluded_reason", row)
+            self.assertEqual(row["completion_evidence"]["log"], str(resumed_log))
+            resumed_log.write_text("Training [142999/143000]\n")
+            self.assertFalse(sweep.inventory()[2]["complete"])
+            resumed_log.write_text("Training [142999/143000]\nJob completed successfully\n")
+            (run / "training_metrics.json").write_text('{"iteration": 95440}\n')
+            self.assertFalse(sweep.inventory()[2]["complete"])
+            (run / "training_metrics.json").write_text('{"iteration": 142999}\n')
+            (run / "config.yaml").write_text("train: {seed: 1}\n")
+            self.assertFalse(sweep.inventory()[2]["complete"])
+
 
 def run_tests():
     result = unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(AggregationTests))

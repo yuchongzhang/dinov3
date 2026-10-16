@@ -13,10 +13,10 @@ def main():
     root = Path(os.environ["SWEEP_ROOT"])
     reports = root / "reports"
     report = json.loads((reports / "summary.json").read_text())
-    assert report["valid_evaluations"] == report["expected_evaluations"] == 28
-    assert report["finished_training_runs"] == 14
+    assert report["valid_evaluations"] == report["expected_evaluations"] == 30
+    assert report["finished_training_runs"] == 15
     records = report["per_run"]
-    assert len({(r["run"], r["task"]) for r in records}) == 28
+    assert len({(r["run"], r["task"]) for r in records}) == 30
     with (reports / "per_run.csv").open() as stream:
         values = list(csv.DictReader(stream))
     checked = 0
@@ -24,7 +24,7 @@ def main():
         rows = [r for r in values if (r["model"], r["task"], r["metric"]) ==
                 (summary["model"], summary["task"], summary["metric"])]
         seeds = sorted(int(r["training_seed"]) for r in rows)
-        expected_seeds = [0, 1] if summary["model"] == "vits_6L_claude" else [0, 1, 2]
+        expected_seeds = [0, 1, 2]
         assert seeds == expected_seeds == summary["training_seeds"]
         assert summary["n"] == len(rows) and summary["ddof"] == 1
         assert summary["units"] == "percent"

@@ -72,7 +72,7 @@ def code_hash():
 def code_compatible(stored, current):
     if stored == current:
         return True
-    # Exact, audited scheduling-only changes preserve evaluation provenance.
+    # Exact, audited orchestration-only changes preserve evaluation provenance.
     audit = ROOT / "scheduling_compatibility.json"
     if not audit.is_file():
         return False
@@ -106,7 +106,16 @@ def inventory():
             run = TRAIN_ROOT / name
             checkpoint = run / "eval/training_142999/teacher_checkpoint.pth"
             config = run / "config.yaml"
-            log = tail(run / "logs/log.txt")
+            log_path = run / "logs/log.txt"
+            log = tail(log_path)
+            # A resumed torchrun job writes scheduler stdout instead of replacing
+            # the original training log. Require both completion markers together.
+            if "[142999/143000]" not in log or "Job completed successfully" not in log:
+                for candidate in sorted(run.glob("*_0_log.out")):
+                    resumed_log = tail(candidate)
+                    if "[142999/143000]" in resumed_log and "Job completed successfully" in resumed_log:
+                        log_path, log = candidate, resumed_log
+                        break
             metric_lines = tail(run / "training_metrics.json").splitlines()
             last_iteration = None
             for line in reversed(metric_lines):
@@ -119,7 +128,7 @@ def inventory():
                         "final_checkpoint_exists": checkpoint.is_file(),
                         "final_iteration_in_log": "[142999/143000]" in log,
                         "successful_completion_in_log": "Job completed successfully" in log,
-                        "log": str(run / "logs/log.txt"),
+                        "log": str(log_path),
                         "metrics": str(run / "training_metrics.json")}
             complete = all([last_iteration == 142999, checkpoint.is_file(), config.is_file(),
                             evidence["final_iteration_in_log"], evidence["successful_completion_in_log"]])
@@ -133,8 +142,8 @@ def inventory():
                    "completion_evidence": evidence, "latest_restart": max(restarts, default=None),
                    "latest_restart_checkpoint": str(run / "ckpt" / str(max(restarts))) if restarts else None,
                    "evaluations": old.get(name, {}).get("evaluations", {})}
-            if name == "vits_6L_claude_seed2":
-                row["excluded_reason"] = "Unfinished training; job 273972 failed (rendezvous port 33279 occupied). Leave untouched."
+            if not complete:
+                row["excluded_reason"] = "Training completion evidence is missing or inconsistent."
             rows.append(row)
     write_json(ROOT / "inventory.json", rows)
     return rows
@@ -317,7 +326,7 @@ def aggregate():
     write_json(ROOT / "inventory.json", rows)
     report = {"generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
               "finished_training_runs": sum(r["complete"] for r in rows),
-              "valid_evaluations": len(records), "expected_evaluations": 28,
+              "valid_evaluations": len(records), "expected_evaluations": sum(r["complete"] for r in rows) * len(TASKS),
               "code_sha256": digest, "per_run": records, "summary": summaries(records), "excluded": excluded}
     dest = ROOT / "reports"
     dest.mkdir(parents=True, exist_ok=True)
@@ -335,7 +344,7 @@ def aggregate():
     for path in dest.iterdir():
         if path.suffix in (".json", ".csv"):
             shutil.copy2(path, REPORT / path.name)
-    print(json.dumps({"valid_evaluations": len(records), "expected": 28, "report": str(REPORT)}), flush=True)
+    print(json.dumps({"valid_evaluations": len(records), "expected": report["expected_evaluations"], "report": str(REPORT)}), flush=True)
     return report
 
 
@@ -402,8 +411,8 @@ def verify():
     from dinov3.eval.setup import load_model_and_context, ModelConfig
     from dinov3.run.init import job_context
     rows = inventory()
-    if sum(r["complete"] for r in rows) != 14:
-        raise ValueError("Expected exactly 14 completed training runs")
+    if sum(r["complete"] for r in rows) != len(MODELS) * 3:
+        raise ValueError("Expected all 15 training runs to be complete")
     records = []
     with job_context(output_dir=str(ROOT / "verification"), seed=0):
         for row in rows:
@@ -590,8 +599,8 @@ def bootstrap(dry_run=False):
     from test_vits_sweep import run_tests
     run_tests()
     rows = inventory()
-    if sum(r["complete"] for r in rows) != 14:
-        raise ValueError("Inventory does not contain exactly 14 completed runs")
+    if sum(r["complete"] for r in rows) != len(MODELS) * 3:
+        raise ValueError("Inventory does not contain all 15 completed runs")
     # Avoid duplicate orchestration; a failed bootstrap can be retried explicitly.
     existing = read_json(ROOT / "orchestration.json") if (ROOT / "orchestration.json").exists() else {}
     if existing and not dry_run:

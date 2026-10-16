@@ -1,9 +1,9 @@
 {
-  "generated_utc": "2026-10-12T16:36:26Z",
-  "finished_training_runs": 14,
-  "valid_evaluations": 28,
-  "expected_evaluations": 28,
-  "code_sha256": "40e3f4a13e1bf70dbc2d05e3466332bf660895cd04394c8ff3f29808c8263f18",
+  "generated_utc": "2026-10-14T21:16:04Z",
+  "finished_training_runs": 15,
+  "valid_evaluations": 30,
+  "expected_evaluations": 30,
+  "code_sha256": "c408944063d303a747b8036865c0d3329672f7136ac00e30d1612ffe5bb780c6",
   "per_run": [
     {
       "run": "vits_claude_seed0",
@@ -816,6 +816,64 @@
         "validation_step": 40000,
         "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_6L_claude_seed1/segmentation/attempt_1365753/model_best.pth"
       }
+    },
+    {
+      "run": "vits_6L_claude_seed2",
+      "model": "vits_6L_claude",
+      "training_seed": 2,
+      "task": "linear",
+      "eval_seed": 0,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1791965423920965000
+      },
+      "checkpoint_sha256": "e95c73fd2ebb6926912a70cc638d63e281038d7a967aa8d714461b64857269d9",
+      "config_sha256": "829b4e9d500a0179997fed1314876dc812b28bc359b7a15b260209e8d133d5c1",
+      "code_sha256": "c408944063d303a747b8036865c0d3329672f7136ac00e30d1612ffe5bb780c6",
+      "job_id": "1709486",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_6L_claude_seed2/linear/attempt_1709486",
+      "status": "completed",
+      "metrics": {
+        "accuracy": 73.04400205612183
+      },
+      "selected": {
+        "classifier": "classifier_1_blocks_avgpool_True_lr_0_075000",
+        "validation_step": 100100
+      }
+    },
+    {
+      "run": "vits_6L_claude_seed2",
+      "model": "vits_6L_claude",
+      "training_seed": 2,
+      "task": "segmentation",
+      "eval_seed": 100,
+      "checkpoint": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+      "checkpoint_identity": {
+        "path": "/project/aip-papyan/shared/vits_claude_sweep/vits_6L_claude_seed2/eval/training_142999/teacher_checkpoint.pth",
+        "size": 264773222,
+        "mtime_ns": 1791965423920965000
+      },
+      "checkpoint_sha256": "e95c73fd2ebb6926912a70cc638d63e281038d7a967aa8d714461b64857269d9",
+      "config_sha256": "829b4e9d500a0179997fed1314876dc812b28bc359b7a15b260209e8d133d5c1",
+      "code_sha256": "c408944063d303a747b8036865c0d3329672f7136ac00e30d1612ffe5bb780c6",
+      "job_id": "1709487",
+      "output": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_6L_claude_seed2/segmentation/attempt_1709487",
+      "status": "completed",
+      "metrics": {
+        "mIoU": 30.6,
+        "acc": 39.79,
+        "aAcc": 73.62,
+        "dice": 43.19,
+        "fscore": 43.48,
+        "precision": 52.1,
+        "recall": 39.79
+      },
+      "selected": {
+        "validation_step": 40000,
+        "decoder_checkpoint": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_6L_claude_seed2/segmentation/attempt_1709487/model_best.pth"
+      }
     }
   ],
   "summary": [
@@ -1404,13 +1462,14 @@
       "eval_seed": 0,
       "training_seeds": [
         0,
-        1
+        1,
+        2
       ],
-      "n": 2,
-      "mean": 72.88499772548676,
-      "sample_std": 0.015556401785370988,
+      "n": 3,
+      "mean": 72.93799916903178,
+      "sample_std": 0.09245788161007648,
       "ddof": 1,
-      "coverage": "incomplete"
+      "coverage": "complete"
     },
     {
       "model": "vits_6L_claude",
@@ -1421,13 +1480,14 @@
       "eval_seed": 100,
       "training_seeds": [
         0,
-        1
+        1,
+        2
       ],
-      "n": 2,
-      "mean": 73.055,
-      "sample_std": 0.6858935777509604,
+      "n": 3,
+      "mean": 73.24333333333334,
+      "sample_std": 0.5844940832321073,
       "ddof": 1,
-      "coverage": "incomplete"
+      "coverage": "complete"
     },
     {
       "model": "vits_6L_claude",
@@ -1438,13 +1498,14 @@
       "eval_seed": 100,
       "training_seeds": [
         0,
-        1
+        1,
+        2
       ],
-      "n": 2,
-      "mean": 38.415,
-      "sample_std": 1.7606958851544998,
+      "n": 3,
+      "mean": 38.873333333333335,
+      "sample_std": 1.476561320546264,
       "ddof": 1,
-      "coverage": "incomplete"
+      "coverage": "complete"
     },
     {
       "model": "vits_6L_claude",
@@ -1455,13 +1516,14 @@
       "eval_seed": 100,
       "training_seeds": [
         0,
-        1
+        1,
+        2
       ],
-      "n": 2,
-      "mean": 42.2,
-      "sample_std": 1.6546298679765186,
+      "n": 3,
+      "mean": 42.53,
+      "sample_std": 1.3021520648526403,
       "ddof": 1,
-      "coverage": "incomplete"
+      "coverage": "complete"
     },
     {
       "model": "vits_6L_claude",
@@ -1472,13 +1534,14 @@
       "eval_seed": 100,
       "training_seeds": [
         0,
-        1
+        1,
+        2
       ],
-      "n": 2,
-      "mean": 42.765,
-      "sample_std": 1.6758430714121209,
+      "n": 3,
+      "mean": 43.00333333333333,
+      "sample_std": 1.2548439478012143,
       "ddof": 1,
-      "coverage": "incomplete"
+      "coverage": "complete"
     },
     {
       "model": "vits_6L_claude",
@@ -1489,13 +1552,14 @@
       "eval_seed": 100,
       "training_seeds": [
         0,
-        1
+        1,
+        2
       ],
-      "n": 2,
-      "mean": 29.759999999999998,
-      "sample_std": 1.35764501987817,
+      "n": 3,
+      "mean": 30.04,
+      "sample_std": 1.0755463727798997,
       "ddof": 1,
-      "coverage": "incomplete"
+      "coverage": "complete"
     },
     {
       "model": "vits_6L_claude",
@@ -1506,13 +1570,14 @@
       "eval_seed": 100,
       "training_seeds": [
         0,
-        1
+        1,
+        2
       ],
-      "n": 2,
-      "mean": 52.35,
-      "sample_std": 0.8202438661763927,
+      "n": 3,
+      "mean": 52.266666666666666,
+      "sample_std": 0.5976899976855321,
       "ddof": 1,
-      "coverage": "incomplete"
+      "coverage": "complete"
     },
     {
       "model": "vits_6L_claude",
@@ -1523,13 +1588,14 @@
       "eval_seed": 100,
       "training_seeds": [
         0,
-        1
+        1,
+        2
       ],
-      "n": 2,
-      "mean": 38.415,
-      "sample_std": 1.7606958851544998,
+      "n": 3,
+      "mean": 38.873333333333335,
+      "sample_std": 1.476561320546264,
       "ddof": 1,
-      "coverage": "incomplete"
+      "coverage": "complete"
     }
   ],
   "excluded": [
@@ -1550,16 +1616,6 @@
       "task": "segmentation",
       "attempt": "/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/segmentation/attempt_1363394",
       "reason": "failed: Command '['torchrun', '--standalone', '--nnodes=1', '--nproc-per-node=1', '/project/aip-papyan/yucz/dinov3/eval_jobs/sweep_segmentation.py', 'config=/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/segmentation/attempt_1363394/requested_config.yaml', 'output_dir=/scratch/yucz/dinov3_results/vits_claude_sweep_eval/outputs/vits_claude_seed0/segmentation/attempt_1363394']' returned non-zero exit status 1."
-    },
-    {
-      "run": "vits_6L_claude_seed2",
-      "task": "linear",
-      "reason": "Unfinished training; job 273972 failed (rendezvous port 33279 occupied). Leave untouched."
-    },
-    {
-      "run": "vits_6L_claude_seed2",
-      "task": "segmentation",
-      "reason": "Unfinished training; job 273972 failed (rendezvous port 33279 occupied). Leave untouched."
     }
   ]
 }
